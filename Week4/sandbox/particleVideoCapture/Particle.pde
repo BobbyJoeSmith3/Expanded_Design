@@ -1,0 +1,46 @@
+class Particle {
+  float x;
+  float y;
+  
+  float vx;
+  float vy;
+  
+  Particle() {
+    x = mouseX;
+    y = mouseY;
+    float a = random(TWO_PI);
+    float speed = random(1,2);
+    vx = cos(a)*speed;
+    vy = sin(a)*speed;
+  }
+  
+  void display() {
+    noStroke();
+    // scale image for performance
+    // sample down when looking up a color
+    color c = video.get(int(x/videoScale), int(y/videoScale));
+    fill(c,25);
+    ellipse(x,y,12,12);
+  }
+  
+  void move() {
+    x = x + vx; // random(-5, 5);
+    y = y + vy; // random(-5, 5);
+    
+    if (y < 0) {
+      y = height;
+    }
+    
+    if (y > height) {
+      y = 0;
+    }
+    
+    if (x < 0) {
+      x = width;
+    }
+    
+    if (x > width) {
+      x = 0;
+    }
+  }
+}
