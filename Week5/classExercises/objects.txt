@@ -1,0 +1,49 @@
+- Objects use everything we have already learned: variables, conditional statements, loops, functions, and so on.
+- Distinction between class and object:
+To be human is to have height, hair, to sleep, to
+eat, and so on.  is is a crucial distinction for programming objects.  This human being template is known as a class.
+A class is different from an object. You are an object. You're an object, I am an object, ALbert Einstein is an object
+- Think of a cookie cutter. A cookie cutter makes cookies, but it is not a cookie itself.
+The cookie cutter is the class, the cookies are the objects.
+- Object-oriented programming allows us to take all of the variables and functions out of the main program and store them inside another object.
+- part one of the object is how it looks ^ part two is how it behaves
+- the methods (functions inside an object).  e car can move and it can be displayed.
+
+//house_object.pde
+
+- primitive data types are singular pieces of information: an integer, a float, a character. Declaring a variable
+that holds onto an object is quite similar.  The difference is that here the type is the class name, something we will
+make up, in this case “Car.” Objects, incidentally, are not primitives and are considered complex data types.
+(because they store multiple pieces of information: data and functionality. Primitives only store data.)
+
+- Functions that are inside of an object are technically referred to as “methods” in Java so we can begin to use this
+terminology. Calling a method inside of an object is accomplished via dot syntax:
+variableName.objectMethod(Method Arguments);
+
+- If we want to make two cars of different colors
+We can do this by placing arguments inside of the constructor method.
+    Car myCar = new Car(color(255,0,0),0,100,2);
+ e constructor must be rewritten to incorporate these arguments:
+    Car(color tempC, float tempXpos, float tempYpos, float tempXspeed) {
+      c = tempC;
+      xpos = tempXpos;
+      ypos = tempYpos;
+      xspeed = tempXspeed;
+    }
+
+-Arguments are local variables used inside the body of a function that get filled with
+values when the function is called. In the examples, they have one purpose only, to initialize
+the variables inside of an object
+-  The constructor’s arguments are just temporary, and exist solely to pass a value from
+ where the object is made into the object itself. (so maybe use temp to name the constructor arguments)
+
+ -A Processing sketch can include as many classes as you feel like writing.
+ - And since classes are made up of data, an object can therefore contain other objects!
+
+ -Objects, just like any data type, can also be passed in as arguments to a function.
+ - If changes are made to an object after it is passed into a function, those changes will affect that
+object used anywhere else throughout the sketch.  is is known as pass by reference
+
+-Nail down the logic of what you want to do as well as how you
+want it to look. As your project begins to grow, take the time to reorganize your code,
+perhaps first with functions, then with objects. --> this is refered to as "refactoring"
