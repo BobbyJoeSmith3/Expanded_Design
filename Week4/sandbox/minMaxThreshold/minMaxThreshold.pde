@@ -31,6 +31,7 @@ void draw() {
   
   float sumX = 0;
   float sumY = 0;
+  // total pixels being picked up between min and max thresh
   float totalPixels = 0;
   
   for (int x = 0; x < kinect2.depthWidth; x++) {
@@ -40,7 +41,8 @@ void draw() {
 
       if (d > minThresh && d < maxThresh) {
         img.pixels[offset] = color(255, 0, 150);
-         
+        
+        // add up x, y, and total pixels
         sumX += x;
         sumY += y;
         totalPixels++;
@@ -54,8 +56,10 @@ void draw() {
   img.updatePixels();
   image(img, 0, 0);
   
+  //calculate center of object
   float avgX = sumX / totalPixels;
   float avgY = sumY / totalPixels;
+  // draw an elipse at center of seen pixels
   fill(150,0,255);
   ellipse(avgX, avgY, 64, 64);
   
