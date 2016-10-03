@@ -21,7 +21,7 @@ function Walker() {
   }
   
   this.walk = function() {
-    this.pos.x += random(-5,5);
-    this.pos.y += random(-5,5);
+    this.vel = createVector(random(-5, 5), random(-5, 5));
+    this.pos = this.pos.add(this.vel);
   }
 }
