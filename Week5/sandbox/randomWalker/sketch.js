@@ -25,7 +25,9 @@ function Walker() {
   
   this.update = function() {
     //randomize the acceleration
-    this.acc = createVector(random(-0.25,0.25), random(-0.25,0.25));
+    this.acc = createVector(random(-1,1), random(-1,1));
+    //use a scalar on the magnitude of the vector to adjust severity of movement
+    this.acc.mult(.25);
     //accelration changes the velocity
     this.vel.add(this.acc);
     //velocity changes the position
