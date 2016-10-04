@@ -1,7 +1,7 @@
 var w;
 
 function setup() {
-  createCanvas(640, 400);
+  createCanvas(800, 600);
   w = new Walker();
 }
 
@@ -17,7 +17,6 @@ function draw() {
 function Walker() {
   this.pos = createVector(width/2, height/2);
   this.vel = createVector(0, 0);
-  this.acc = createVector(0, 0.1);
   
   this.display = function() {
     fill(255);
@@ -25,6 +24,8 @@ function Walker() {
   }
   
   this.update = function() {
+    //randomize the acceleration
+    this.acc = createVector(random(-0.25,0.25), random(-0.25,0.25));
     //accelration changes the velocity
     this.vel.add(this.acc);
     //velocity changes the position
