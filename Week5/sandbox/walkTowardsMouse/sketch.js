@@ -1,7 +1,7 @@
 var w;
 
 function setup() {
-  createCanvas(640, 400);
+  createCanvas(800, 800);
   w = new Walker();
 }
 
@@ -22,8 +22,9 @@ function Walker() {
     var mouse = createVector(mouseX, mouseY);
     this.acc = p5.Vector.sub(mouse, this.pos);
     //set the magnitude of each vector to 1
-    this.acc.normalize();
-    this.acc.div(5);
+    // this.acc.normalize();
+    // this.acc.div(5);
+    this.acc.setMag(0.15);
     
     //update velocity and position
     this.vel.add(this.acc);
