@@ -1,7 +1,7 @@
 var w;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(300, 300);
   w = new Walker();
 }
 

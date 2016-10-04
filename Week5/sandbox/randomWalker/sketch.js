@@ -25,7 +25,9 @@ function Walker() {
   
   this.update = function() {
     //randomize the acceleration
-    this.acc = createVector(random(-1,1), random(-1,1));
+    // this.acc = createVector(random(-1,1), random(-1,1));
+    //could randomize based on angle/theta/direction using radians
+    this.acc = p5.Vector.fromAngle(random(TWO_PI));
     //use a scalar on the magnitude of the vector to adjust severity of movement
     this.acc.mult(.25);
     //accelration changes the velocity
