@@ -17,7 +17,7 @@ void loop() {
   Serial.print("sensor = ");
   Serial.print(analogValue);
   Serial.print("\t output = ");
-  Serial.print(mappedValue);
+  Serial.println(mappedValue);
   // make the display of numbers smoother
   delay(100);
 }
