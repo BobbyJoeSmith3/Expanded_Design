@@ -1,7 +1,7 @@
 var particle;
 
 function setup() {
-  createCanvas(640, 360);
+  createCanvas(600, 360);
   particle = new Particle();
 }
 
@@ -11,7 +11,8 @@ function draw() {
   var gravity = createVector(0, 0.1);
   particle.applyForce(gravity);
   
+  particle.checkEdges();
   particle.update();
   particle.display();
+  
 }
-
