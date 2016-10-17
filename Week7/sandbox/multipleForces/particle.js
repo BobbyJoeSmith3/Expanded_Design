@@ -7,7 +7,7 @@ function Particle() {
   
   this.applyForce = function(force){
     //force = mass * acc translates to acc = force if mass is equal to 1
-    this.acc = force;
+    this.acc.add(force);
   }
   
   this.checkEdges = function() {
@@ -20,6 +20,9 @@ function Particle() {
   this.update = function() {
     this.vel.add(this.acc);
     this.pos.add(this.vel);
+    
+    // reset accelaration back to 0 so it doesn't compound with each frame
+    this.acc.set(0, 0);
   }
   
   this.display = function() {
