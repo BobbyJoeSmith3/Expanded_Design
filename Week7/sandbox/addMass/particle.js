@@ -2,13 +2,20 @@ function Particle(xpos, ypos) {
   this.pos = createVector(xpos, ypos);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
-  this.mass = 1;
+  // mass is scalar having only magnitude
+  // whereas vectors have both magnitude and direction
+  this.mass = 5;
   this.radius = 24;
   this.diameter = this.radius * 2;
   
   this.applyForce = function(force){
-    //force = mass * acc translates to acc = force if mass is equal to 1
-    this.acc.add(force);
+    /* force = mass * acc translates to acc = force if mass is equal to 1
+     need to make a copy of force so that the original being passed in 
+     isn't altered everytime applyForce is called 
+    */
+    var f = force.copy();
+    f.div(this.mass);
+    this.acc.add(f);
   }
   
   this.checkEdges = function() {
