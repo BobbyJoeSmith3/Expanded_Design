@@ -1,11 +1,13 @@
-function Particle(xpos, ypos) {
+function Particle(xpos, ypos, particle_mass) {
   this.pos = createVector(xpos, ypos);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
   // mass is scalar having only magnitude
   // whereas vectors have both magnitude and direction
-  this.mass = 5;
-  this.radius = 24;
+  this.mass = particle_mass;
+  
+  // scale particle radius based on its mass
+  this.radius = this.mass * 5;
   this.diameter = this.radius * 2;
   
   this.applyForce = function(force){
