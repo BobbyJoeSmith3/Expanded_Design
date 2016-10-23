@@ -13,6 +13,7 @@ void setup() {
 
 void draw() {
   background(51);
+  particle.update();
   particle.display();
 
 }
