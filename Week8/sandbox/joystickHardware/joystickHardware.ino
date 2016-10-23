@@ -20,12 +20,15 @@ void loop() {
   ypos = analogRead(Y_pin);
   // array for x and y readings from joystick
   int vectorArray[] = {xpos, ypos};
-  Serial.print("X-axis: ");
-  Serial.print(vectorArray[0]);
-  Serial.print("\n");
-  Serial.print("Y-axis: ");
-  Serial.println(vectorArray[1]);
-  Serial.print("\n\n");
+//  Serial.print("X-axis: ");
+//  Serial.print(vectorArray[0]);
+//  Serial.print("\n");
+//  Serial.print("Y-axis: ");
+//  Serial.println(vectorArray[1]);
+//  Serial.print("\n\n");
+  // write to serial using buffer
+  // adjust buffer to send ints instead of bytes
+  Serial.write((uint8_t*)vectorArray, sizeof(vectorArray));
   delay(500);
 
 }
