@@ -24,8 +24,21 @@ void draw() {
   background(51);
   float analogX = arduino.analogRead(0);
   float analogY = arduino.analogRead(1);
-  xPos = map(analogX, 0, 1023, 0, width);
-  yPos = map(analogY, 0, 1023, height, 0);
+  // manually map analog inputs based on joystick neutral value ranges
+  if (analogX < 525) {
+    xPos = -1;
+  } else if (525 < analogX && analogX < 528) {
+    xPos = 0;
+  } else {
+    xPos = 1;
+  }
+  if (analogY < 514 ) {
+    yPos = 1;
+  } else if (514 < analogY && analogY < 517) {
+    yPos = 0;
+  } else {
+    yPos = -1;
+  }
   particle.update();
   particle.display();
 
@@ -46,8 +59,7 @@ class Particle {
   
   void update () {
     // compute a vector that points from location to mouse
-    PVector mouse = new PVector(xPos, yPos);
-    PVector acceleration = PVector.sub(mouse, location);
+    PVector acceleration = new PVector(xPos, yPos);
     // normalize by setting magnitude of acceleration
     acceleration.setMag(0.2);
     
