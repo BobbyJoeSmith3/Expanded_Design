@@ -2,7 +2,10 @@ function Vehicle(x, y, m) {
   this.pos = createVector(x, y);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
+  //maxspeed controls the magnitude of the Desired vector
   this.maxspeed = 5;
+  //controls the handling of the vehicle
+  this.maxforce = .5;
   
   this.applyForce = function(force) {
     // var f = force.copy();
@@ -21,12 +24,16 @@ function Vehicle(x, y, m) {
     
     // now that we have the desired velocity and the vehicle's current velocity we can calculate the steering force
     var steering = p5.Vector.sub(desired, this.vel);
+    // we want to limit, not setMag which would be continuous, of maximum force
+    steering.limit(this.maxforce);
     
     this.applyForce(steering);
   }
   
   this.update = function() {
     this.vel.add(this.acc);
+    //limit velocit to the maximum speed of vehicle
+    this.vel.limit(this.maxspeed);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
   }
