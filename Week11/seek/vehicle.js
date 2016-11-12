@@ -7,6 +7,8 @@ function Vehicle(x, y, m) {
   //controls the handling of the vehicle
   this.maxforce = .5;
   
+  this.r = 6;
+  
   this.applyForce = function(force) {
     // var f = force.copy();
     // f.div(this.mass);
@@ -39,9 +41,19 @@ function Vehicle(x, y, m) {
   }
   
   this.display = function() {
-    fill(255, 150);
-    stroke(255);
-    ellipse(this.pos.x, this.pos.y, 48, 48);
+    var theta = this.vel.heading() + PI/2;
+    fill(127);
+    stroke(200);
+    strokeWeight(1);
+    push();
+    translate(this.pos.x, this.pos.y);
+    rotate(theta);
+    beginShape();
+    vertex(0, -this.r*2);
+    vertex(-this.r, this.r*2);
+    vertex(this.r, this.r*2);
+    endShape(CLOSE);
+    pop();
   }
 }
 
