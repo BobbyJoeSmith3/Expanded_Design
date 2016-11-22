@@ -2,8 +2,8 @@ function Vehicle(x, y, m) {
   this.pos = createVector(x, y);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
-  this.maxspeed = 5;
-  this.maxforce = 0.2;
+  this.maxspeed = 8;
+  this.maxforce = 0.7;
   
   this.r = 6;
   
