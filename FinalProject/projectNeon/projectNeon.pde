@@ -31,7 +31,11 @@ World world;
 StopWatch sw;
 
 // Moving entity
-MovingEntity mover0;
+//MovingEntity mover0;
+
+// Vehicle entities
+Vehicle vehicle0;
+Vector2D target = new Vector2D();
 
 
 
@@ -51,30 +55,30 @@ void setup() {
   sw = new StopWatch();
   
   // Vector2D class used to represent all locs and dirs in game domain world
-  // Create the mover
-  mover0 = new MovingEntity(
+  // Create the vehicle
+  vehicle0 = new Vehicle(
     new Vector2D(width/2, height/2),   // position
     15,                                // collision radius
-    new Vector2D(15, 15),              // velocity
-    40,                                // maximum speed
+    new Vector2D(100, 100),              // velocity
+    100,                                // maximum speed
     new Vector2D(1, 1),                // heading
     1,                                 // mass
-    0.5,                               // turning rate in radians per sec
+    180,                               // turning rate in radians per sec
     200                                // max force
   );
   
-  // SAMPLE mover object
-  // What does this mover look like
+  // SAMPLE vehicle object
+  // What does this vehicle look like
   ArrowPic view = new ArrowPic(this);
   // Show collision and movement hints
   view.showHints(Hints.HINT_COLLISION | Hints.HINT_HEADING | Hints.HINT_VELOCITY);
-  // Add renderer to Moving Entity
-  mover0.renderer(view);
+  // Add renderer to vehicle
+  vehicle0.renderer(view);
   // Construct a boundary for object and have it bounce off of boundary
-  Domain d = new Domain(width/2, height/2, width-60, height-60);
-  mover0.worldDomain(d, SBF.REBOUND);
+  Domain d = new Domain(0, 0, width, height);
+  vehicle0.worldDomain(d, SBF.WRAP);
   //Add entity to game domain
-  world.add(mover0);
+  world.add(vehicle0);
   
   // VERY IMPORTANT: Allways initialize geomerative library before using
   RG.init(this);
@@ -94,6 +98,9 @@ void setup() {
 void draw() {  
   // Time elapsed in seconds since method was called
   double elapsedTime = sw.getElapsedTime();
+  target.set(mouseX, mouseY);
+  vehicle0.AP().arriveOn(target);
+  
   // Update game physics based on the elapsed time
   world.update(elapsedTime);
   // Clear display using background
