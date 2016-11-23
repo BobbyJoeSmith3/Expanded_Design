@@ -25,10 +25,11 @@ public class PlayerShip extends PicturePS {
     pushStyle();
     pushMatrix();
     translate(posX, posY);
-    rotate(angle);
+    rotate(angle - 102.1);
     
     // Drawing code goes here
-    
+    scale(0.1);
+    RG.shape(playerShip);
     
     // End of drwing code
     popMatrix();

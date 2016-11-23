@@ -46,8 +46,15 @@ Vector2D target = new Vector2D();
 
 void setup() {
   fullScreen(P2D);
+  //size(800, 800);
   // Draws all geometry with smooth (anti-alliased) edges
   smooth();
+  
+  // VERY IMPORTANT: Allways initialize geomerative library before using
+  RG.init(this);
+  // Load graphic
+  playerShip = RG.loadShape("player_ship.svg");
+  playerShip = RG.centerIn(playerShip, g);
   
   // Specifies the part of the world that wil be displayed initially
   // not the size of the game world, and establishes 1:1 world unit pixel ratio
@@ -58,7 +65,7 @@ void setup() {
   // Create the vehicle
   vehicle0 = new Vehicle(
     new Vector2D(width/2, height/2),   // position
-    15,                                // collision radius
+    50,                                // collision radius
     new Vector2D(100, 100),              // velocity
     100,                                // maximum speed
     new Vector2D(1, 1),                // heading
@@ -69,7 +76,7 @@ void setup() {
   
   // SAMPLE vehicle object
   // What does this vehicle look like
-  ArrowPic view = new ArrowPic(this);
+  PlayerShip view = new PlayerShip(this);
   // Show collision and movement hints
   view.showHints(Hints.HINT_COLLISION | Hints.HINT_HEADING | Hints.HINT_VELOCITY);
   // Add renderer to vehicle
@@ -79,12 +86,6 @@ void setup() {
   vehicle0.worldDomain(d, SBF.WRAP);
   //Add entity to game domain
   world.add(vehicle0);
-  
-  // VERY IMPORTANT: Allways initialize geomerative library before using
-  RG.init(this);
-  
-  playerShip = RG.loadShape("player_ship.svg");
-  playerShip = RG.centerIn(playerShip, g);
   
   sw.reset(); // should always be last line in setup
 }
@@ -104,11 +105,7 @@ void draw() {
   // Update game physics based on the elapsed time
   world.update(elapsedTime);
   // Clear display using background
-  background(0);
+  background(13);
   // Tell the world to draw itself
   world.draw(elapsedTime);
-  
-  translate(mouseX, mouseY);
-  scale(0.1);
-  RG.shape(playerShip);
 }
