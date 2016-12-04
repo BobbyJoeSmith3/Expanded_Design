@@ -6,7 +6,7 @@
 // used geomerative library instead of PShape to process svg
 import geomerative.*;
 
-// Imports for AI_for_2D_Games
+// Imports for AI_for_2D_Games a library of physics engines
 import game2dai.entities.*;
 import game2dai.entityshapes.ps.*;
 import game2dai.maths.*;
@@ -17,7 +17,10 @@ import game2dai.steering.*;
 import game2dai.utils.*;
 import game2dai.graph.*;
 
-
+// Imports for Firmata to act as a communication protocol with microcontroller
+import processing.serial.*;
+import cc.arduino.*;
+import org.firmata.*;
 
 /* ========================================
    SECTION: GLOBAL VARIABLES
@@ -37,6 +40,8 @@ StopWatch sw;
 Vehicle vehicle0;
 Vector2D target = new Vector2D();
 
+// Microcontroller
+Arduino arduino;
 
 
 
@@ -46,9 +51,12 @@ Vector2D target = new Vector2D();
 
 void setup() {
   fullScreen(P2D);
-  //size(800, 800);
   // Draws all geometry with smooth (anti-alliased) edges
   smooth();
+  
+  // Instantiate microcontroller
+  // make sure the Baud rates match
+  arduino = new Arduino(this, Arduino.list()[1], 115200);
   
   // VERY IMPORTANT: Allways initialize geomerative library before using
   RG.init(this);
@@ -96,7 +104,8 @@ void setup() {
    SECTION: DRAW
 ======================================== */
 
-void draw() {  
+void draw() { 
+  
   // Time elapsed in seconds since method was called
   double elapsedTime = sw.getElapsedTime();
   target.set(mouseX, mouseY);

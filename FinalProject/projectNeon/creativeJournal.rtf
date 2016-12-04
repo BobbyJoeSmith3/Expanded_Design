@@ -14,4 +14,11 @@ I was going to hand code the physics engines for the objects, since I had learne
 \
 Starting to understand the library, however I need to figure out how to render the SVGs I have created through the game2Dai library, or get the geomerative library to work with the game2Dai library. It\'92s not entirely evident how to do so from the library. They provide a method for bitmaps, but I don\'92t see anything specifically mentioned about rendering SVG graphics.\
 \
-After looking through a number of examples provided by the library, I found one similar enough to what I was trying to do, and experimented a little bit to find a way to use geomerative and game2Dai together to alter the appearance of the vehicle to be the SVG created for the player\'92s ship. I then had to adjust the collision radius and angle of the graphic to match the heading of the vehicle.}
+After looking through a number of examples provided by the library, I found one similar enough to what I was trying to do, and experimented a little bit to find a way to use geomerative and game2Dai together to alter the appearance of the vehicle to be the SVG created for the player\'92s ship. I then had to adjust the collision radius and angle of the graphic to match the heading of the vehicle.\
+\
+December 4 (Build Day):\
+Today the team is getting together to wire the hardware, and get the software to interact with the hardware. Jason was able to construct an arcade controller with a joystick and two buttons. Dante acquired some led strip lights that we would also like to implement in the controller. The entirety of the game has not been programmed yet, but since today\'92s goal is to get the software and hardware working together, that will be my focus. \
+\
+Instead of using serial communication between the arduino the processing software we are using for the game, we are going to use Firmata, which is \'93a protocol for communicating with micro controllers from software on a host computer.\'94 I prefer using Firmata because it gives me control over the micro controller all from my processing sketch, keeping all of my code in the same place. Laziness is the key to progress.\
+\
+i was able to get Firmata loaded without much trouble, and tested the communication with a simple blinking led. However, I noticed the motion of the game became choppy because it needed to wait for the whole led blinking protocol which incorporates delays to complete before it could run the movement of the game.}
