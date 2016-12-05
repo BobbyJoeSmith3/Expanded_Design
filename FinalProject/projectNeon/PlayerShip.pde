@@ -2,7 +2,7 @@
 public class PlayerShip extends PicturePS {
   // Constructor must have PApplet param
   public PlayerShip(PApplet app) {
-    // super(app) must be first line of contructor
+    // super(app) must be first line of constructor
     super(app);
   } // All params must be present in method header statement of draw
   public void draw(BaseEntity owner,
