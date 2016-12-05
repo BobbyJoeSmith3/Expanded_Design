@@ -167,8 +167,6 @@ void draw(){
       a.edges();
       a.render(); 
      }
-     //rotate(PI/2);
-     //image(rocket,width/2 - 5 * ship.r,height/2-7.5*ship.r,10*ship.r,15*ship.r);
      image(rocket, width/2 - 5*ship.r, height/2 - 7.5*ship.r, 10*ship.r, 15*ship.r);
      
      textFont(font, 33);
@@ -200,7 +198,7 @@ void draw(){
      
      textFont(font, 15);
      fill(255);
-     text("Click anywhere to start stage " + (stage + 2), width/2-100, height*.75);
+     text("Push any button to start stage " + (stage + 2), width/2-122, height/2+25);
    
    
  }

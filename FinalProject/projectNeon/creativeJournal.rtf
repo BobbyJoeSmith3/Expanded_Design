@@ -32,4 +32,8 @@ I have been able to get the software to work, and Dante has wired the arcade con
 \
 Decided to opt for the emulator, however, the Arduino firmware isn\'92t set up to act as a HID like the Leonardo, meaning it isn\'92t able to operate as a keyboard. There is a firmware upgrade available for the UNO to make it HID compatible, but it would require a complete reset of the device and a jumper to bridge the reset pin with the ground. I don\'92t have a jumper, but fortunately Dante has an Arduino Leonardo, so we switched to programming on his microcontroller instead.\
 \
-The Leonardo works, and the firmware comes with a Keyboard library that allows me to assign pins to keyboard commands, so it\'92s like connecting a USB keyboard. What\'92s nice about this is I assumed I would have to send character strokes from the arcade pad over a serial communication, but since the computer reads the arcade pad as a keyboard, no serial communication is necessary between the arduino sketch and processing.}
+The Leonardo works, and the firmware comes with a Keyboard library that allows me to assign pins to keyboard commands, so it\'92s like connecting a USB keyboard. What\'92s nice about this is I assumed I would have to send character strokes from the arcade pad over a serial communication, but since the computer reads the arcade pad as a keyboard, no serial communication is necessary between the arduino sketch and processing.\
+\
+resources:\
+arduino \'97 {\field{\*\fldinst{HYPERLINK "https://github.com/cuddleburrito/gamething-controller/blob/master/gamething/gamething.ino"}}{\fldrslt https://github.com/cuddleburrito/gamething-controller/blob/master/gamething/gamething.ino}}\
+asteroids \'97 {\field{\*\fldinst{HYPERLINK "https://www.openprocessing.org/sketch/106239"}}{\fldrslt https://www.openprocessing.org/sketch/106239}}}
