@@ -1,20 +1,19 @@
 /* @pjs preload="Asteroid.png, data/AsteroidLarge.png, data/AsteroidMedium.png, data/AsteroidSmall.png, data/player_ship.png"; 
  */
 
+// library of state driven game AI for autonomous agents http://lagers.org.uk/ai4g/index.html
+import game2dai.*;
+import game2dai.entities.*;
+import game2dai.entityshapes.*;
+import game2dai.entityshapes.ps.*;
+import game2dai.fsm.*;
+import game2dai.graph.*;
+import game2dai.maths.*;
+import game2dai.steering.*;
+import game2dai.utils.*;
 
-// Imports for Firmata to act as a communication protocol with microcontroller
-//import processing.serial.*;
-//import cc.arduino.*;
-//import org.firmata.*;
-
-//Arduino arduino;
-// reversed names of pins since joystick triggers opposite switch
-//int downPin = 9;
-//int rightPin = 10;
-//int upPin = 11;
-//int leftPin = 6;
-//int redButtonPin = 1;
-//int blueButtonPin = 2;
+World world;
+StopWatch sw;
 
 Ship ship;
 boolean upPressed = false;//CHANGE LEFT AND RIGHT TO UP AND DOWN( IN SHIP TOO)
@@ -53,14 +52,10 @@ int diffCurve = 2;
 void setup(){
  background(bgColor);
  fullScreen(P2D);
+ world = new World(width, height);
+ //Stopwatch is a hires timer used to control the physics calculations
+ sw = new StopWatch();
  
- //arduino = new Arduino(this, Arduino.list()[1], 115200);
- //arduino.pinMode(upPin, Arduino.INPUT);
- //arduino.pinMode(downPin, Arduino.INPUT);
- //arduino.pinMode(rightPin, Arduino.INPUT);
- //arduino.pinMode(leftPin, Arduino.INPUT);
- //arduino.pinMode(redButtonPin, Arduino.INPUT);
- //arduino.pinMode(blueButtonPin, Arduino.INPUT);
  
  font = createFont("Cambria", 32);
  asteroidPics[0] = loadImage("data/AsteroidLarge.png"); 
@@ -76,13 +71,18 @@ void setup(){
  frameRate(24);
  lives = 3;
  asteroids = new ArrayList<Asteroid>(0);
+ 
+ sw.reset(); //resets timer to zero, should always be last line in setup
 }
 
 
 void draw(){
  if( lives >= 0 && asteroids.size()>0){
+   double elapsedTime = sw.getElapsedTime();
+   world.update(elapsedTime);
    float theta = heading2D(ship.rotation)+PI/2;
    background(0); 
+   world.draw(elapsedTime);
    
    ship.update(exhaust, fire);
    ship.edges();
