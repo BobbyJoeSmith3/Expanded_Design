@@ -28,7 +28,7 @@ float bulletSpeed = 10;
 int numAsteroids = 3;
 
 int startingRadius = 50;
-PImage[] asteroidPics = new PImage[3];
+PImage[] asteroidPics = new PImage[9];
 
 float bgColor = 0;
 
@@ -66,6 +66,12 @@ void setup(){
  asteroidPics[0] = loadImage("data/AsteroidLarge.png"); 
  asteroidPics[1] = loadImage("data/AsteroidMedium.png"); 
  asteroidPics[2] = loadImage("data/AsteroidSmall.png");
+ asteroidPics[3] = loadImage("data/AsteroidLarge_blue.png");
+ asteroidPics[4] = loadImage("data/AsteroidLarge_purple.png");
+ asteroidPics[5] = loadImage("data/AsteroidMedium_green.png");
+ asteroidPics[6] = loadImage("data/AsteroidMedium_yellow.png");
+ asteroidPics[7] = loadImage("data/AsteroidSmall_orange.png");
+ asteroidPics[8] = loadImage("data/AsteroidSmall_red.png");
  rocket = loadImage("data/player_ship.png");
  frameRate(24);
  lives = 3;
@@ -294,9 +300,14 @@ void keyReleased(){
    ship.acceleration = new PVector(0,0);
   }
   if(key == ' '){
+    //// start game or level on key or button release
+   startNewGameOrLevel();
    fireBullet();
   }
-  
+  startNewGameOrLevel();
+}
+
+void startNewGameOrLevel() {
   // start game or level on key or button release
   if(lives < 0){
    stage = -1;
@@ -346,7 +357,7 @@ class Asteroid{
    angle = random(2 * PI);
    rotation = new PVector(cos(angle), sin(angle));
    spin = (float)(Math.random()*omegaLimit-omegaLimit/2);
-   int rnd = (int)(Math.random()*3);
+   int rnd = (int)(Math.random()*8);
    pics = pics_;
    pic = pics[rnd];
  }
